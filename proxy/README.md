@@ -1,6 +1,6 @@
 # Auth Proxy Server (TypeScript)
 
-A gRPC to REST proxy server written in TypeScript that converts HTTP requests from your React Native app to gRPC calls to your protobuf backend.
+A gRPC to REST proxy server written in TypeScript that converts HTTP requests from your React Native app to gRPC calls to your protobuf backend. Proto files are sourced from ../backend_test_one/proto/.
 
 ## 🚀 Quick Start
 
@@ -22,13 +22,13 @@ npm start
 ```
 proxy/
 ├── src/
-│   ├── grpc-client.ts      # gRPC client with type definitions
-│   ├── server.ts           # Main Express server
+│   ├── generated/         # Auto-generated TypeScript types from proto
+│   │   └── auth.ts        # Generated types from ../backend_test_one/proto/auth.proto
+│   ├── grpc-client.ts     # gRPC client with generated types
+│   ├── server.ts          # Main Express server
 │   └── routes/
-│       └── auth.ts         # Authentication endpoints
-├── dist/                   # Compiled JavaScript (auto-generated)
-├── proto/
-│   └── auth.proto          # Protobuf definitions
+│       └── auth.ts        # Authentication endpoints
+├── dist/                  # Compiled JavaScript (auto-generated)
 ├── package.json
 ├── tsconfig.json           # TypeScript configuration
 └── README.md
@@ -88,7 +88,7 @@ The proxy connects to your Rust gRPC backend. Make sure your backend is running 
 - `npm run dev` - Start development server with hot reload
 - `npm run build` - Compile TypeScript to JavaScript
 - `npm start` - Run production server (requires build first)
-- `npm run proto:generate` - Generate protobuf JavaScript files (if needed)
+- `npm run proto:generate` - Generate TypeScript types from ../backend_test_one/proto/auth.proto
 
 ## 🐛 Debugging
 

@@ -1,19 +1,7 @@
 import * as grpc from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
 import * as path from 'path';
-
-// Define types for our auth service
-interface SignInRequest {
-  email: string;
-  password: string;
-}
-
-interface SignInResponse {
-  tokens: {
-    access_token: string;
-    refresh_token: string;
-  };
-}
+import { SignInRequest, SignInResponse } from './generated/auth';
 
 interface AuthServiceClient extends grpc.Client {
   SignIn(
@@ -23,10 +11,10 @@ interface AuthServiceClient extends grpc.Client {
 }
 
 // Load the proto file
-const PROTO_PATH = path.join(__dirname, '..', 'proto', 'auth.proto');
+const PROTO_PATH = path.join(__dirname, '..', '..', 'backend_test_one', 'proto', 'auth.proto');
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
-  keepCase: true,
+  keepCase: false,
   longs: String,
   enums: String,
   defaults: true,

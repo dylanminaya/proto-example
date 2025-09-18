@@ -1,8 +1,8 @@
 # Root level gitignore for mono-repo
 
 # Rust
-backend_test_one/target/
-backend_test_one/Cargo.lock
+backend/target/
+backend/Cargo.lock
 **/*.rs.bk
 *.pdb
 

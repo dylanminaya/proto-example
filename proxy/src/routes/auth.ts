@@ -3,7 +3,7 @@ import { signIn } from '../grpc-client';
 
 const router: Router = express.Router();
 
-// Sign In endpoint - the only endpoint we need
+// Sign In endpoint
 router.post('/signin', async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
@@ -22,11 +22,16 @@ router.post('/signin', async (req: Request, res: Response) => {
       password
     });
 
+    console.log('gRPC response:', JSON.stringify(response, null, 2));
+    console.log('Tokens object:', response.tokens);
+    console.log('Access token:', response.tokens?.accessToken);
+    console.log('Refresh token:', response.tokens?.refreshToken);
+
     return res.json({
       success: true,
       tokens: {
-        access_token: response.tokens.access_token,
-        refresh_token: response.tokens.refresh_token
+        access_token: response.tokens?.accessToken,
+        refresh_token: response.tokens?.refreshToken
       }
     });
 
