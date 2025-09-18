@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "simple-proto",
     "name": "simple-proto",
     "slug": "simple-proto",
     "version": "1.0.0",
@@ -35,6 +36,9 @@
       "eas": {
         "projectId": "7c9805b7-45ed-4881-9571-742735b9821e"
       }
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
