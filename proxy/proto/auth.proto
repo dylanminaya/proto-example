@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+// Defines the package space to prevent name collisions.
+package auth;
+
+// The main authentication service definition.
+service AuthService {
+  // Checks if a username or email is already in use.
+  rpc CheckAvailability(CheckAvailabilityRequest) returns (CheckAvailabilityResponse);
+
+  // Registers a new user.
+  rpc SignUp(SignUpRequest) returns (SignUpResponse);
+
+  // Verifies a user's email using a verification token.
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse);
+
+  // Authenticates a user and returns access/refresh tokens.
+  rpc SignIn(SignInRequest) returns (SignInResponse);
+
+  // Issues a new access token using a refresh token.
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
+
+  // Initiates the password reset process for a given email.
+  rpc RequestPasswordReset(RequestPasswordResetRequest) returns (RequestPasswordResetResponse);
+
+  // Resets the user's password using a reset token.
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse);
+}
+
+// -----------------
+// Availability Messages
+// -----------------
+
+enum AvailabilityField {
+  FIELD_UNSPECIFIED = 0;
+  FIELD_USERNAME = 1;
+  FIELD_EMAIL = 2;
+}
+
+message CheckAvailabilityRequest {
+  AvailabilityField field = 1;
+  string value = 2;
+}
+
+message CheckAvailabilityResponse {
+  bool is_available = 1;
+}
+
+// -----------------
+// Sign-Up Messages
+// -----------------
+
+message SignUpRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3; // Client should hash this before sending, or use TLS.
+}
+
+message SignUpResponse {
+  string user_id = 1;
+  string message = 2; // e.g., "Sign up successful. Please check your email to verify."
+}
+
+// -----------------
+// Email Verification Messages
+// -----------------
+
+message VerifyEmailRequest {
+  string verification_token = 1;
+}
+
+message VerifyEmailResponse {
+  bool success = 1;
+  string message = 2; // e.g., "Email verified successfully."
+}
+
+
+// -----------------
+// Sign-In Messages
+// -----------------
+
+// A reusable message for authentication tokens.
+message Tokens {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message SignInRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message SignInResponse {
+  Tokens tokens = 1;
+}
+
+
+// -----------------
+// Token Refresh Messages
+// -----------------
+
+message RefreshTokenRequest {
+  string refresh_token = 1;
+}
+
+message RefreshTokenResponse {
+  string access_token = 1;
+}
+
+// -----------------
+// Password Reset Messages
+// -----------------
+
+message RequestPasswordResetRequest {
+  string email = 1;
+}
+
+message RequestPasswordResetResponse {
+  string message = 1; // e.g., "If an account with that email exists, a password reset link has been sent."
+}
+
+message ResetPasswordRequest {
+  string reset_token = 1;
+  string new_password = 2;
+}
+
+message ResetPasswordResponse {
+  bool success = 1;
+  string message = 2; // e.g., "Password has been reset successfully."
+}

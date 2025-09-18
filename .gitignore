@@ -1,0 +1,57 @@
+# Root level gitignore for mono-repo
+
+# Rust
+backend_test_one/target/
+backend_test_one/Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Node.js / TypeScript
+proxy/node_modules/
+proxy/dist/
+proxy/.env
+proxy/.env.local
+proxy/.env.production
+proxy/.env.staging
+
+simple-proto/node_modules/
+simple-proto/.expo/
+simple-proto/dist/
+simple-proto/.env
+simple-proto/.env.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Build outputs
+build/
+dist/
+
+# Package manager files
+.pnp.*
+.yarn/

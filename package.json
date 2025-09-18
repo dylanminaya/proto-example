@@ -1,0 +1,37 @@
+{
+  "name": "auth-system-monorepo",
+  "version": "1.0.0",
+  "description": "Complete authentication system with Rust gRPC backend, TypeScript proxy, and React Native mobile app",
+  "private": true,
+  "scripts": {
+    "install:all": "cd proxy && npm install && cd ../simple-proto && npm install",
+    "build:backend": "cd backend_test_one && cargo build",
+    "build:proxy": "cd proxy && npm run build",
+    "build:all": "npm run build:backend && npm run build:proxy",
+    "dev:backend": "cd backend_test_one && cargo run",
+    "dev:proxy": "cd proxy && npm run dev",
+    "dev:mobile": "cd simple-proto && npm start",
+    "start:proxy": "cd proxy && npm start",
+    "clean:backend": "cd backend_test_one && cargo clean",
+    "clean:proxy": "cd proxy && rm -rf node_modules dist",
+    "clean:mobile": "cd simple-proto && rm -rf node_modules .expo",
+    "clean:all": "npm run clean:backend && npm run clean:proxy && npm run clean:mobile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/auth-system-monorepo.git"
+  },
+  "keywords": [
+    "rust",
+    "grpc",
+    "typescript",
+    "express",
+    "react-native",
+    "expo",
+    "protobuf",
+    "authentication",
+    "monorepo"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
