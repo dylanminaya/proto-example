@@ -17,10 +17,6 @@
     "clean:mobile": "cd simple-proto && rm -rf node_modules .expo",
     "clean:all": "npm run clean:backend && npm run clean:proxy && npm run clean:mobile"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/auth-system-monorepo.git"
-  },
   "keywords": [
     "rust",
     "grpc",
@@ -32,6 +28,5 @@
     "authentication",
     "monorepo"
   ],
-  "author": "Your Name",
-  "license": "MIT"
+  "author": "Dylan Minaya"
 }
