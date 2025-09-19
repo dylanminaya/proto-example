@@ -7,7 +7,7 @@
     "build": "tsc",
     "start": "npm run build && node dist/server.js",
     "dev": "nodemon --exec ts-node src/server.ts",
-    "proto:generate": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/generated --proto_path=../backend_test_one/proto ../backend_test_one/proto/auth.proto --ts_proto_opt=esModuleInterop=true,useOptionals=messages,outputJsonMethods=false,outputClientImpl=false"
+    "proto:generate": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/generated --proto_path=../backend/proto ../backend/proto/auth.proto --ts_proto_opt=esModuleInterop=true,useOptionals=messages,outputJsonMethods=false,outputClientImpl=false"
   },
   "dependencies": {
     "express": "^4.18.2",
