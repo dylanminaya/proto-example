@@ -13,6 +13,7 @@ proxy/.env
 proxy/.env.local
 proxy/.env.production
 proxy/.env.staging
+proxy/src/generated/
 
 simple-proto/node_modules/
 simple-proto/.expo/
